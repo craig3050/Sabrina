@@ -1,0 +1,85 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: CASA Craig
+  # Location required to calculate the time the sun rises and sets
+  latitude: 53.45
+  longitude: -2.3167
+  # C for Celsius, F for Fahrenheit
+  temperature_unit: C
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/London
+
+# View all events in a logbook
+logbook:
+
+# Allows you to issue voice commands from the frontend
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# Discover some devices automatically
+discovery:
+
+# Prediction of weather
+sensor:
+   platform: yr
+
+# Checks for available updates
+updater:
+
+# Enables the frontend
+frontend:
+
+# Track the sun
+sun:
+
+# Show links to resources in log and frontend
+
+media_player 1:
+  platform: plex
+
+media_player 2:
+  platform: cast
+
+mqtt:
+  broker: 192.168.0.10
+  port: 1883
+  client_id: Home_assistant_sabrina
+
+switch:
+  platform: mqtt
+  name: "Bedroom Switch"
+  state_topic: "/example"
+  command_topic: "/example"
+  payload_on: "ON"
+  payload_off: "OFF"
+  optimistic: true
+  qos: 0
+  retain: true
+  value_template: '{{ value.x }}'
+
+
+sensor test_temp:
+  - platform: mqtt
+    name: "test temperature"
+    state_topic: "area/temperature"
+    unit_of_measurement: "ºC"
+  - platform: mqtt
+    name: "test humidity"
+    state_topic: "area/humidity"
+    unit_of_measurement: "%"
+  - platform: mqtt
+    name: "test voltage"
+    state_topic: "area/voltage"
+    unit_of_measurement: "Volts"
+
+sensor 4:
+  platform: systemmonitor
+  resources:
+    - type: memory_free
+    - type: memory_use_percent
+    - type: processor_use
+    - type: since_last_boot
+
+
