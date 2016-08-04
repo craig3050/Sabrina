@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # loading the class
 import lcddriver
 from time import *
