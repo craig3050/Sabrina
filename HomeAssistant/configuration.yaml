@@ -59,12 +59,11 @@ switch:
   retain: true
   value_template: '{{ value.x }}'
 
-
 sensor test_temp:
   - platform: mqtt
     name: "test temperature"
     state_topic: "area/temperature"
-    unit_of_measurement: "ºC"
+    unit_of_measurement: "ÂºC"
   - platform: mqtt
     name: "test humidity"
     state_topic: "area/humidity"
@@ -82,4 +81,7 @@ sensor 4:
     - type: processor_use
     - type: since_last_boot
 
-
+camera CCTV:
+  platform: generic
+  still_image_url: http://192.168.0.15/picture/1/current/
+  scan_interval: 60
