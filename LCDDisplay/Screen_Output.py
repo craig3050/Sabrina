@@ -74,12 +74,23 @@ while True:
       print ("Getting time and date")
       the_time = strftime('%Y-%m-%d     %H:%M')
 
+      # shorten the MQTT message to stop screen overflow
+      counted_length = 0
+      short_MQTT_message = ""
+
+      for x in MQTT_Message:
+         short_MQTT_message += x
+         counted_length +=1
+         if counted_length >19:
+            break
+
+
       #   print the information to the screen
       print("Printing info to screen")
       lcd.lcd_display_string('%s' % (the_time), 1)
       lcd.lcd_display_string('IP %s' % ( ip_number ), 2)
       lcd.lcd_display_string("%s" % (MQTT_Topic), 3)
-      lcd.lcd_display_string("%s" % (MQTT_Message), 4)
+      lcd.lcd_display_string("%s" % (short_MQTT_message), 4)
 
       print("Sleeping")
       sleep(20)
